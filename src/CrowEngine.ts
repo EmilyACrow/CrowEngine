@@ -139,6 +139,7 @@ export class ComponentWrapper {
         return this.map.get(componentClass) as T
     }
 
+    // Return true if the component is of the given class
     public has(componentClass: Function): boolean {
         return this.map.has(componentClass)
     }
@@ -157,7 +158,6 @@ export class ComponentWrapper {
         this.map.delete(componentClass)
     }
 }
-
 
 export type Point = {
     x: number;
