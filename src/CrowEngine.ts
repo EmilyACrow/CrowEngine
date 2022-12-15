@@ -7,11 +7,19 @@
  */
 
 export class Engine {
-    private entities = new Map<Entity, ComponentWrapper>()
-    private systems = new Map<System, Set<Entity>>()
+    private entities: Map<Entity, ComponentWrapper>
+    private systems: Map<System, Set<Entity>>
 
-    private nextEntityId = 0
-    private entitiesToDestroy = new Array<Entity>()
+    private nextEntityId: number
+    private entitiesToDestroy: Array<Entity>
+
+    constructor() {
+        this.entities = new Map<Entity, ComponentWrapper>()
+        this.systems = new Map<System, Set<Entity>>()
+
+        this.nextEntityId = 0
+        this.entitiesToDestroy = new Array<Entity>()
+    }
 
     public addEntity(): Entity {
         let entity = this.nextEntityId;
@@ -92,12 +100,12 @@ export class Engine {
 }
 
 // Entities are the base type of all engine objects
-type Entity = number;
+export type Entity = number;
 
 
-abstract class Component { }
+export abstract class Component { }
 
-abstract class System {
+export abstract class System {
     /* Set of all components the system requries before it will run
     * on a given entity 
     */
@@ -115,12 +123,12 @@ abstract class System {
 /* This is to help typescript understand what's happening by making the type of 
 * a component available when working with the component wrapper 
 */
-type ComponentClass<T extends Component> = new (...args: any[]) => T
+export type ComponentClass<T extends Component> = new (...args: any[]) => T
 
 /* The component class wrapper that will make instancing and different components 
 * easy to use
 */
-class ComponentWrapper {
+export class ComponentWrapper {
     private map = new Map<Function, Component>()
 
     public add(component: Component): void {

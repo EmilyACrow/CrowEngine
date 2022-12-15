@@ -1,6 +1,7 @@
-import { Point } from "./CrowEngine";
+import {System, Component, Point} from "./CrowEngine";
 
-class Player {
+export class Player extends Component {
     position: Point;
+    
 }
 
